@@ -54,7 +54,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/comece_aqui"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:cornerRadius="12dp"
         app:iconPadding="0dp"
         android:backgroundTint="@color/green"
