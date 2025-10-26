@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImFitPlus">
         <activity
-            android:name=".FormActivity"
+            android:name=".ui.FormActivity"
             android:exported="false" />
         <activity
             android:name=".forms"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

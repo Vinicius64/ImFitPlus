@@ -2,4 +2,21 @@
     <string name="app_name">ImFitPlus</string>
     <string name="main_text">Descubra seu perfil de saúde e receba recomendações personalizadas</string>
     <string name="comece_aqui">Comece aqui</string>
+    <string name="data_de_nascimento">Data de Nascimento:</string>
+    <string name="sobrenome">Sobrenome</string>
+    <string name="nome">Nome</string>
+    <string name="preencha_os_dados">Preencha os dados</string>
+    <string name="sexo">Sexo:</string>
+    <string name="masculino">Masculino</string>
+    <string name="feminino">Feminino</string>
+    <string name="nivel_atividade_fisica">Nível de Atividade Física:</string>
+    <string name="peso">Peso (Kg):</string>
+    <string name="altura">Altura (cm):</string>
+    <string name="calcular_imc">calcular IMC</string>
+    <string-array name="nivel_atividade">
+        <item>Sedentário</item>
+        <item>Leve</item>
+        <item>Moderado</item>
+        <item>Intenso</item>
+    </string-array>
 </resources>
