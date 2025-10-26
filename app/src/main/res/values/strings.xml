@@ -13,6 +13,9 @@
     <string name="peso">Peso (Kg):</string>
     <string name="altura">Altura (cm):</string>
     <string name="calcular_imc">calcular IMC</string>
+    <string name="none">-</string>
+    <string name="calcular_gasto_cal_rico">Calcular gasto calórico</string>
+    <string name="voltar">Voltar</string>
     <string-array name="nivel_atividade">
         <item>Sedentário</item>
         <item>Leve</item>
