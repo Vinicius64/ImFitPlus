@@ -16,6 +16,9 @@
     <string name="none">-</string>
     <string name="calcular_gasto_cal_rico">Calcular gasto calórico</string>
     <string name="voltar">Voltar</string>
+    <string name="gasto_calorico_diario">Gasto Calórico Diário:</string>
+    <string name="calcular_peso_ideal">Calcular Peso Ideal</string>
+    <string name="voltar_ao_inicio">Voltar ao inicio</string>
     <string-array name="nivel_atividade">
         <item>Sedentário</item>
         <item>Leve</item>

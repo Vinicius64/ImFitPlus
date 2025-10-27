@@ -9,6 +9,7 @@ data class User(
     var sobrenome: String = "",
     var altura: Int = 170,
     var peso: Int = 70,
+    var idade: Int = 0,
     var dataNasc: String = "",
     var sexo: String = "",
     var nivelAtividade: String = ""

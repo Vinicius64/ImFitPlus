@@ -31,6 +31,11 @@ class ImcActivity : AppCompatActivity() {
             }
         }
 
+        aib.calcularGastoBt.setOnClickListener {
+            val intent = Intent(this, GastoCaloricoActivity::class.java).apply { putExtra("user", user) }
+            carl.launch(intent)
+        }
+
         aib.voltarBt.setOnClickListener {
             setResult(RESULT_OK, Intent().putExtra("user", user))
             finish()

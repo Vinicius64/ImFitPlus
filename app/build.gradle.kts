@@ -51,4 +51,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.wefika:horizontal-picker:1.1.1")
+    implementation("com.github.bumptech.glide:glide:4.15.1")
 }
