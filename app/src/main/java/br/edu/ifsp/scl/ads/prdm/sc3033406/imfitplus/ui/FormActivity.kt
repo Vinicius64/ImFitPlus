@@ -12,36 +12,39 @@ import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.databinding.ActivityFormsBin
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.model.User
 import com.wefika.horizontalpicker.HorizontalPicker
 
-class FormActivity : AppCompatActivity() {
+    class FormActivity : AppCompatActivity() {
 
-    private lateinit var carl: ActivityResultLauncher<Intent>
+        private lateinit var carl: ActivityResultLauncher<Intent>
 
-    private val afv: ActivityFormsBinding by lazy {
-        ActivityFormsBinding.inflate(layoutInflater)
-    }
+        private val afv: ActivityFormsBinding by lazy {
+            ActivityFormsBinding.inflate(layoutInflater)
+        }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(afv.root)
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            enableEdgeToEdge()
+            setContentView(afv.root)
 
         carl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
-                // Recuper o usuário
+                val updated = result.data?.getParcelableExtra<User>("user")
+                updated?.let {
+                    preencherCampos(it)
+                }
             }
         }
 
-        afv.calcularBt.setOnClickListener { enviarParaImc() }
+            afv.calcularBt.setOnClickListener { enviarParaImc() }
 
-        configurarPicker(afv.alturaHp, 120, 230, 170)
-        configurarPicker(afv.pesoHp, 30, 250, 70)
-    }
+            configurarPicker(afv.alturaHp, 120, 230, 170)
+            configurarPicker(afv.pesoHp, 30, 250, 70)
+        }
 
-    private fun configurarPicker(picker: HorizontalPicker, min: Int, max: Int, valorInicial: Int) {
-        val valores = (min..max).map { it.toString() }.toTypedArray()
-        picker.setValues(valores)
-        picker.setSelectedItem(valorInicial - min)
-    }
+        private fun configurarPicker(picker: HorizontalPicker, min: Int, max: Int, valorInicial: Int) {
+            val valores = (min..max).map { it.toString() }.toTypedArray()
+            picker.setValues(valores)
+            picker.setSelectedItem(valorInicial - min)
+        }
 
     private fun enviarParaImc() {
 
@@ -78,10 +81,10 @@ class FormActivity : AppCompatActivity() {
         }
     }
 
-//    private fun preencherCampos(user: User) {
-//        afv.nomeEt.setText(user.nome)
-//        afv.sobrenomeEt.setText(user.sobrenome)
-//        afv.alturaHp.setSelectedItem(user.altura - 120)
-//        afv.pesoHp.setSelectedItem(user.peso - 30)
-//    }
+    private fun preencherCampos(user: User) {
+        afv.nomeEt.setText(user.nome)
+        afv.sobrenomeEt.setText(user.sobrenome)
+        afv.alturaHp.setSelectedItem(user.altura - 120)
+        afv.pesoHp.setSelectedItem(user.peso - 30)
+    }
 }
