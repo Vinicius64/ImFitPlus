@@ -19,6 +19,9 @@
     <string name="gasto_calorico_diario">Gasto Calórico Diário:</string>
     <string name="calcular_peso_ideal">Calcular Peso Ideal</string>
     <string name="voltar_ao_inicio">Voltar ao inicio</string>
+    <string name="peso_ideal_calculado">Peso ideal calculado:</string>
+    <string name="peso_ideal">%1$s kg</string>
+    <string name="imc_resultado">%1$s kcal</string>
     <string-array name="nivel_atividade">
         <item>Sedentário</item>
         <item>Leve</item>
