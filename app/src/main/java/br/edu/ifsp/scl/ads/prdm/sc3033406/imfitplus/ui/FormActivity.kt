@@ -64,7 +64,7 @@ import com.wefika.horizontalpicker.HorizontalPicker
                     else -> ""
                 }
             },
-            idade = calcularIdade(dia,mes,ano)
+            idade = calcularIdade(ano,mes,dia)
         )
         val intent = Intent(this, ImcActivity::class.java).apply { putExtra("user", user) }
         carl.launch(intent)

@@ -4,18 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.R
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.databinding.ActivityGastoCaloricoBinding
-import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.databinding.ActivityImcBinding
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.model.User
 import com.bumptech.glide.Glide
-import java.time.LocalDate
-import java.time.Period
-import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeParseException
 import java.util.Locale
+import android.widget.Toast
 
 class GastoCaloricoActivity : AppCompatActivity() {
     private val agcb: ActivityGastoCaloricoBinding by lazy { ActivityGastoCaloricoBinding.inflate(layoutInflater) }
@@ -41,6 +35,11 @@ class GastoCaloricoActivity : AppCompatActivity() {
             finish()
         }
 
+        agcb.pesoIdealBt.setOnClickListener {
+            val intent = Intent(this, PesoActivity::class.java).apply { putExtra("user", user) }
+            startActivity(intent)
+        }
+
         Glide.with(this)
             .asGif()
             .load(R.drawable.fogo)
@@ -48,6 +47,7 @@ class GastoCaloricoActivity : AppCompatActivity() {
     }
 
     private fun calcularTMB(user: User): Double {
+        Toast.makeText(this, "Idade recebida: ${user.idade}", Toast.LENGTH_SHORT).show()
         val peso = user.peso.toDouble()
         val altura = user.altura.toDouble()
         val age = user.idade
