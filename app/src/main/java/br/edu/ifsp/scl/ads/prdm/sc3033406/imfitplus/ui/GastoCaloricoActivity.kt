@@ -9,7 +9,6 @@ import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.databinding.ActivityGastoCal
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.model.User
 import com.bumptech.glide.Glide
 import java.util.Locale
-import android.widget.Toast
 
 class GastoCaloricoActivity : AppCompatActivity() {
     private val agcb: ActivityGastoCaloricoBinding by lazy { ActivityGastoCaloricoBinding.inflate(layoutInflater) }
@@ -47,7 +46,6 @@ class GastoCaloricoActivity : AppCompatActivity() {
     }
 
     private fun calcularTMB(user: User): Double {
-        Toast.makeText(this, "Idade recebida: ${user.idade}", Toast.LENGTH_SHORT).show()
         val peso = user.peso.toDouble()
         val altura = user.altura.toDouble()
         val age = user.idade
