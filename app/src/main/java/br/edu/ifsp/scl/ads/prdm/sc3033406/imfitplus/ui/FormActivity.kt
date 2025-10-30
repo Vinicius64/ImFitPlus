@@ -4,6 +4,7 @@ import java.time.LocalDate
 import java.time.Period
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -11,19 +12,20 @@ import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.databinding.ActivityFormsBinding
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.model.User
 import com.wefika.horizontalpicker.HorizontalPicker
+import kotlin.compareTo
 
-    class FormActivity : AppCompatActivity() {
+class FormActivity : AppCompatActivity() {
 
-        private lateinit var carl: ActivityResultLauncher<Intent>
+    private lateinit var carl: ActivityResultLauncher<Intent>
 
-        private val afv: ActivityFormsBinding by lazy {
-            ActivityFormsBinding.inflate(layoutInflater)
-        }
+    private val afv: ActivityFormsBinding by lazy {
+        ActivityFormsBinding.inflate(layoutInflater)
+    }
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            enableEdgeToEdge()
-            setContentView(afv.root)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(afv.root)
 
         carl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -34,19 +36,20 @@ import com.wefika.horizontalpicker.HorizontalPicker
             }
         }
 
-            afv.calcularBt.setOnClickListener { enviarParaImc() }
+        afv.calcularBt.setOnClickListener { enviarParaImc() }
 
-            configurarPicker(afv.alturaHp, 120, 230, 170)
-            configurarPicker(afv.pesoHp, 30, 250, 70)
-        }
+        configurarPicker(afv.alturaHp, 120, 230, 170)
+        configurarPicker(afv.pesoHp, 30, 250, 70)
+    }
 
-        private fun configurarPicker(picker: HorizontalPicker, min: Int, max: Int, valorInicial: Int) {
-            val valores = (min..max).map { it.toString() }.toTypedArray()
-            picker.setValues(valores)
-            picker.setSelectedItem(valorInicial - min)
-        }
+    private fun configurarPicker(picker: HorizontalPicker, min: Int, max: Int, valorInicial: Int) {
+        val valores = (min..max).map { it.toString() }.toTypedArray()
+        picker.setValues(valores)
+        picker.setSelectedItem(valorInicial - min)
+    }
 
     private fun enviarParaImc() {
+        if (!validateInputs()) return
 
         val dia = afv.dataNascDp.dayOfMonth
         val mes = afv.dataNascDp.month
@@ -86,5 +89,41 @@ import com.wefika.horizontalpicker.HorizontalPicker
         afv.sobrenomeEt.setText(user.sobrenome)
         afv.alturaHp.setSelectedItem(user.altura - 120)
         afv.pesoHp.setSelectedItem(user.peso - 30)
+    }
+
+    private fun validateInputs(): Boolean {
+        var valid = true
+
+        if (afv.nomeEt.text.isNullOrBlank()) {
+            afv.nomeEt.error = "Digite o nome"
+            afv.nomeEt.requestFocus()
+            valid = false
+        } else {
+            afv.nomeEt.error = null
+        }
+
+        if (afv.sobrenomeEt.text.isNullOrBlank()) {
+            if (valid) afv.sobrenomeEt.requestFocus()
+            afv.sobrenomeEt.error = "Digite o sobrenome"
+            valid = false
+        } else {
+            afv.sobrenomeEt.error = null
+        }
+
+        if (afv.sexoRg.checkedRadioButtonId == -1) {
+            Toast.makeText(this, "Selecione o sexo", Toast.LENGTH_SHORT).show()
+            valid = false
+        }
+
+        val dia = afv.dataNascDp.dayOfMonth
+        val mes = afv.dataNascDp.month
+        val ano = afv.dataNascDp.year
+        val idade = calcularIdade(ano, mes, dia)
+        if (idade <= 0) {
+            Toast.makeText(this, "Data de nascimento inválida", Toast.LENGTH_SHORT).show()
+            valid = false
+        }
+
+        return valid
     }
 }
