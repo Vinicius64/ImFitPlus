@@ -12,5 +12,9 @@ data class User(
     var idade: Int = 0,
     var dataNasc: String = "",
     var sexo: String = "",
-    var nivelAtividade: String = ""
+    var nivelAtividade: String = "",
+    var imc: Double = 0.0,
+    var categoriaImc: String = "",
+    var pesoIdeal: Double = 0.0,
+    var gastoCalorico: Double = 0.0
 ) : Parcelable

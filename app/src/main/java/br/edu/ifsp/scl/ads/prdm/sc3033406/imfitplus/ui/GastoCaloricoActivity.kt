@@ -24,6 +24,7 @@ class GastoCaloricoActivity : AppCompatActivity() {
         }
 
         val tmb = calcularTMB(user)
+        user.gastoCalorico = tmb
         val tmbFormatado = String.format(Locale.getDefault(), "%.2f", tmb)
 
         agcb.gastoCaloricoResultadoTv.text = tmbFormatado

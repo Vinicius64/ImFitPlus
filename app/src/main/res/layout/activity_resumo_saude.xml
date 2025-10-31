@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.PesoActivity">
+    tools:context=".ui.ResumoSaudeActivity">
 
     <include
         android:id="@+id/toolbar_in"
@@ -17,16 +17,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titulo_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/peso_ideal_calculado"
-        android:textSize="24sp"
+        android:text="@string/resumo_da_saude"
         android:gravity="center"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_in" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar_in"/>
 
     <TextView
         android:id="@+id/nome_tv"
@@ -38,20 +37,67 @@
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title" />
-
+        app:layout_constraintTop_toBottomOf="@id/titulo_tv" />
 
     <TextView
-        android:id="@+id/peso_ideal_tv"
+        android:id="@+id/imc_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:textSize="48sp"
         android:text="@string/none"
+        android:textSize="24sp"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nome_tv" />
+
+    <TextView
+        android:id="@+id/categoria_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/none"
+        android:textSize="24sp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imc_tv" />
+
+    <TextView
+        android:id="@+id/peso_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/none"
+        android:textSize="24sp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categoria_tv" />
+
+    <TextView
+        android:id="@+id/gasto_calorico_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/none"
+        android:textSize="24sp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/peso_tv" />
+
+    <TextView
+        android:id="@+id/recomendacao_agua_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/none"
+        android:textSize="24sp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gasto_calorico_tv"/>
 
     <Button
         android:id="@+id/voltar_bt"
@@ -64,22 +110,9 @@
         android:backgroundTint="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/peso_ideal_tv"
+        app:layout_constraintTop_toBottomOf="@id/recomendacao_agua_tv"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="24dp" />
-    <Button
-        android:id="@+id/resumo_bt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/resumo_da_saude"
-        android:textSize="20sp"
-        app:cornerRadius="12dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/green"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/voltar_bt"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="24dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

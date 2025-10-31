@@ -22,6 +22,7 @@
     <string name="peso_ideal_calculado">Peso ideal calculado:</string>
     <string name="peso_ideal">%1$s kg</string>
     <string name="imc_resultado">%1$s kcal</string>
+    <string name="resumo_da_saude">Resumo da Saúde</string>
     <string-array name="nivel_atividade">
         <item>Sedentário</item>
         <item>Leve</item>

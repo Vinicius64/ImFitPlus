@@ -45,6 +45,7 @@ class ImcActivity : AppCompatActivity() {
     private fun mostrarResultadoImc(user: User) {
         val alturaM = user.altura / 100.0
         val imc = if (alturaM > 0) user.peso / (alturaM * alturaM) else 0.0
+        user.imc = imc
         val imcFormatado = String.format(Locale.getDefault(), "%.2f", imc)
         val categoria = when {
             imc < 18.5 -> "Abaixo do peso"
@@ -52,6 +53,7 @@ class ImcActivity : AppCompatActivity() {
             imc < 30.0 -> "Sobrepeso"
             else -> "Obesidade"
         }
+        user.categoriaImc = categoria
 
         aib.nomeTv.text = listOfNotNull(user.nome.takeIf { it.isNotBlank() }, user.sobrenome.takeIf { it.isNotBlank() }).joinToString(" ")
         aib.imcResultadoTv.text = imcFormatado
