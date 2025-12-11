@@ -46,7 +46,7 @@ class PesoActivity : AppCompatActivity() {
     }
 
     private fun mostrarResultadoPesoIdeal(user: User){
-        val altura = user.altura.toDouble() / 100.0
+        val altura = user.altura!!.toDouble() / 100.0
         val pesoIdeal = 22.0 * (altura * altura)
         user.pesoIdeal = pesoIdeal
         val pesoFormatado = String.format(Locale.getDefault(), "%.2f", pesoIdeal)

@@ -38,6 +38,6 @@ class ResumoSaudeActivity : AppCompatActivity() {
         arsb.categoriaTv.text = user.categoriaImc
         arsb.imcTv.text = String.format(Locale.getDefault(), "%.2f" + " imc", user.imc)
         arsb.gastoCaloricoTv.text = String.format(Locale.getDefault(), "%.2f" + "kcal", user.gastoCalorico)
-        arsb.recomendacaoAguaTv.text = String.format(Locale.getDefault(),"%.2f" + " L", (user.peso*0.350))
+        arsb.recomendacaoAguaTv.text = String.format(Locale.getDefault(),"%.2f" + " L", (user.peso!!*0.350))
     }
 }

@@ -47,15 +47,16 @@ class GastoCaloricoActivity : AppCompatActivity() {
     }
 
     private fun calcularTMB(user: User): Double {
-        val peso = user.peso.toDouble()
-        val altura = user.altura.toDouble()
-        val age = user.idade
+        val peso = user.peso ?: return 0.0
+        val altura = user.altura ?: return 0.0
+        val idade = user.idade ?: return 0.0
+
         val sexo = user.sexo.trim().lowercase(Locale.getDefault())
 
         return if (sexo.startsWith("m")) {
-            66.0 + (13.7 * peso) + (5.0 * altura) - (6.8 * age)
+            66.0 + (13.7 * peso) + (5.0 * altura) - (6.8 * idade)
         } else {
-            655.0 + (9.6 * peso) + (1.8 * altura) - (4.7 * age)
+            655.0 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade)
         }
     }
 }

@@ -43,8 +43,8 @@ class ImcActivity : AppCompatActivity() {
     }
 
     private fun mostrarResultadoImc(user: User) {
-        val alturaM = user.altura / 100.0
-        val imc = if (alturaM > 0) user.peso / (alturaM * alturaM) else 0.0
+        val alturaM = user.altura!! / 100.0
+        val imc = if (alturaM > 0) user.peso!! / (alturaM * alturaM) else 0.0
         user.imc = imc
         val imcFormatado = String.format(Locale.getDefault(), "%.2f", imc)
         val categoria = when {
