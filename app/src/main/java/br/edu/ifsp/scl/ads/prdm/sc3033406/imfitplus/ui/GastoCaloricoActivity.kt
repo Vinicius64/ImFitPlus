@@ -2,16 +2,20 @@ package br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.R
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.databinding.ActivityGastoCaloricoBinding
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.model.User
+import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.repository.UserRepository
 import com.bumptech.glide.Glide
 import java.util.Locale
 
 class GastoCaloricoActivity : AppCompatActivity() {
     private val agcb: ActivityGastoCaloricoBinding by lazy { ActivityGastoCaloricoBinding.inflate(layoutInflater) }
+
+    private lateinit var repo: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +30,10 @@ class GastoCaloricoActivity : AppCompatActivity() {
         val tmb = calcularTMB(user)
         user.gastoCalorico = tmb
         val tmbFormatado = String.format(Locale.getDefault(), "%.2f", tmb)
+
+        repo = UserRepository(this)
+
+        repo.update(user)
 
         agcb.gastoCaloricoResultadoTv.text = tmbFormatado
 
