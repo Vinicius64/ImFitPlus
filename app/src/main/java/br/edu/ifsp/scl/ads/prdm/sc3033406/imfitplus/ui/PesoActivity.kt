@@ -2,6 +2,7 @@ package br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -9,6 +10,7 @@ import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.R
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.databinding.ActivityPesoBinding
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.model.User
+import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.repository.UserRepository
 import java.util.Locale
 
 class PesoActivity : AppCompatActivity() {
@@ -17,13 +19,20 @@ class PesoActivity : AppCompatActivity() {
     }
     private lateinit var carl: ActivityResultLauncher<Intent>
 
+    private lateinit var repo: UserRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(apb.root)
 
+        repo = UserRepository(this)
+
         val user = intent.getParcelableExtra<User>("user")
-        user?.let { mostrarResultadoPesoIdeal(it) }
+        user?.let {
+            mostrarResultadoPesoIdeal(it)
+            repo.update(it)
+        }
 
         apb.voltarBt.setOnClickListener {
             setResult(RESULT_OK, Intent().putExtra("user", user))
