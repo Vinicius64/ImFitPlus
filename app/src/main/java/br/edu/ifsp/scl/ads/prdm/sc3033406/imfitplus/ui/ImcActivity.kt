@@ -2,11 +2,13 @@ package br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.databinding.ActivityImcBinding
 import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.model.User
+import br.edu.ifsp.scl.ads.prdm.sc3033406.imfitplus.repository.UserRepository
 import java.util.Locale
 
 class ImcActivity : AppCompatActivity() {
@@ -14,13 +16,19 @@ class ImcActivity : AppCompatActivity() {
     private lateinit var carl: ActivityResultLauncher<Intent>
     private val aib: ActivityImcBinding by lazy { ActivityImcBinding.inflate(layoutInflater) }
 
+    private lateinit var repo: UserRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(aib.root)
 
-        val user = intent.getParcelableExtra<User>("user")
-        user?.let { mostrarResultadoImc(it) }
+        repo = UserRepository(this)
 
+        val user = intent.getParcelableExtra<User>("user")
+        user?.let {
+            mostrarResultadoImc(it)
+            repo.update(it)
+        }
 
         carl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
