@@ -28,6 +28,7 @@
     <string name="categoria_hist">Categoria: -</string>
     <string name="gasto_hist">Gasto: -</string>
     <string name="nome_hist">Nome: -</string>
+    <string name="frequencia_maxima">Frequência Máxima</string>
     <string-array name="nivel_atividade">
         <item>Sedentário</item>
         <item>Leve</item>

@@ -17,5 +17,6 @@ data class User(
     var imc: Double? = 0.0,
     var categoriaImc: String = "",
     var pesoIdeal: Double? = 0.0,
-    var gastoCalorico: Double? = 0.0
+    var gastoCalorico: Double? = 0.0,
+    var frequencia: Int? = 0
 ) : Parcelable

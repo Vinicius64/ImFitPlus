@@ -25,6 +25,7 @@ class UserRepository(context: Context) {
             put("categoriaImc", user.categoriaImc)
             if (user.pesoIdeal != null) put("pesoIdeal", user.pesoIdeal) else putNull("pesoIdeal")
             if (user.gastoCalorico != null) put("gastoCalorico", user.gastoCalorico) else putNull("gastoCalorico")
+            if (user.frequencia != null) put("frequencia", user.frequencia) else putNull("frequencia")
         }
         val id = db.insert("user", null, cv)
         db.close()
@@ -50,6 +51,7 @@ class UserRepository(context: Context) {
             put("categoriaImc", user.categoriaImc)
             if (user.pesoIdeal != null) put("pesoIdeal", user.pesoIdeal) else putNull("pesoIdeal")
             if (user.gastoCalorico != null) put("gastoCalorico", user.gastoCalorico) else putNull("gastoCalorico")
+            if (user.frequencia != null) put("frequencia", user.frequencia) else putNull("frequencia")
         }
         val rows = db.update("user", cv, "id = ?", arrayOf(user.id.toString()))
         db.close()
@@ -74,7 +76,8 @@ class UserRepository(context: Context) {
                 imc = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("imc")),
                 categoriaImc = cursor.getString(cursor.getColumnIndexOrThrow("categoriaImc")),
                 pesoIdeal = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("pesoIdeal")),
-                gastoCalorico = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("gastoCalorico"))
+                gastoCalorico = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("gastoCalorico")),
+                frequencia = cursor.getIntOrNull(cursor.getColumnIndexOrThrow("frequencia"))
             )
         }
         cursor.close()
@@ -100,7 +103,8 @@ class UserRepository(context: Context) {
                 imc = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("imc")),
                 categoriaImc = cursor.getString(cursor.getColumnIndexOrThrow("categoriaImc")),
                 pesoIdeal = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("pesoIdeal")),
-                gastoCalorico = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("gastoCalorico"))
+                gastoCalorico = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("gastoCalorico")),
+                frequencia = cursor.getIntOrNull(cursor.getColumnIndexOrThrow("frequencia"))
             )
         }
         cursor.close()
@@ -126,7 +130,8 @@ class UserRepository(context: Context) {
                 imc = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("imc")),
                 categoriaImc = cursor.getString(cursor.getColumnIndexOrThrow("categoriaImc")),
                 pesoIdeal = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("pesoIdeal")),
-                gastoCalorico = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("gastoCalorico"))
+                gastoCalorico = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("gastoCalorico")),
+                frequencia = cursor.getIntOrNull(cursor.getColumnIndexOrThrow("frequencia"))
             )
         }
         cursor.close()
@@ -146,7 +151,7 @@ class UserRepository(context: Context) {
                 last.idade == user.idade &&
                 last.dataNasc == user.dataNasc &&
                 last.sexo == user.sexo &&
-                last.nivelAtividade == user.nivelAtividade) {
+                last.nivelAtividade == user.nivelAtividade){
                 return -1
             }
         }
@@ -168,6 +173,7 @@ class UserRepository(context: Context) {
             put("categoriaImc", user.categoriaImc)
             if (user.pesoIdeal != null) put("pesoIdeal", user.pesoIdeal) else putNull("pesoIdeal")
             if (user.gastoCalorico != null) put("gastoCalorico", user.gastoCalorico) else putNull("gastoCalorico")
+            if (user.frequencia != null) put("frequencia", user.frequencia) else putNull("frequencia")
         }
         val id = db.insert("user_history", null, cv)
         db.close()
@@ -194,7 +200,8 @@ class UserRepository(context: Context) {
                     imc = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("imc")),
                     categoriaImc = cursor.getString(cursor.getColumnIndexOrThrow("categoriaImc")),
                     pesoIdeal = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("pesoIdeal")),
-                    gastoCalorico = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("gastoCalorico"))
+                    gastoCalorico = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("gastoCalorico")),
+                    frequencia = cursor.getIntOrNull(cursor.getColumnIndexOrThrow("frequencia"))
                 )
                 users.add(u)
             } while (cursor.moveToNext())

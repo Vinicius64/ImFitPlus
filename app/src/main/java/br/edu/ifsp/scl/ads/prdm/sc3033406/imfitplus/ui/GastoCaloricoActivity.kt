@@ -28,14 +28,21 @@ class GastoCaloricoActivity : AppCompatActivity() {
         }
 
         val tmb = calcularTMB(user)
+        val fmax = calcularFmax(user)
+
         user.gastoCalorico = tmb
         val tmbFormatado = String.format(Locale.getDefault(), "%.2f", tmb)
+
+        val fmaxFormatado = (fmax).toString()
 
         repo = UserRepository(this)
 
         repo.update(user)
 
         agcb.gastoCaloricoResultadoTv.text = tmbFormatado
+        agcb.frequenciaResultadoTv.text = fmaxFormatado
+
+        calcularTaxas(fmax)
 
         agcb.voltarMainBt.setOnClickListener {
             val resultIntent = Intent().apply { putExtra("user", user) }
@@ -66,5 +73,22 @@ class GastoCaloricoActivity : AppCompatActivity() {
         } else {
             655.0 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade)
         }
+    }
+
+    private fun calcularFmax(user: User): Int {
+        val idade = user.idade ?: return 0
+        return 220 - idade
+    }
+
+    private fun calcularTaxas(fmax: Int){
+        val cinco = fmax*0.5
+        val seis = fmax*0.6
+        val sete = fmax*0.7
+        val oito = fmax*0.8
+        val nove = fmax*0.9
+        agcb.zonaLeve.text = "Zona leve(50-60%): "+ cinco + " - " + seis + " bpm"
+        agcb.zonaQueima.text = "Zona Queima de Gordura(60-70%): "+ seis + " - " + sete + " bpm"
+        agcb.zonaAerobica.text = "Zona Aeróbica(70-80%): "+ sete + " - " + oito + " bpm"
+        agcb.zonaAnaerobica.text = "Zona Anaeróbica(80-90%): "+ oito + " - " + nove + " bpm"
     }
 }
