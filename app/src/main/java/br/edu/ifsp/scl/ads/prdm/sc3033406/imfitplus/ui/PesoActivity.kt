@@ -49,8 +49,13 @@ class PesoActivity : AppCompatActivity() {
         }
 
         apb.resumoBt.setOnClickListener {
-            val intent = Intent(this, ResumoSaudeActivity::class.java).apply { putExtra("user", user) }
-            carl.launch(intent)
+            user?.let{
+                repo.addHistory(it)
+                val intent = Intent(this, ResumoSaudeActivity::class.java).apply { putExtra("user", it) }
+                carl.launch(intent)
+            }?: run {
+                Toast.makeText(this, "Nenhum usuário disponível", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
