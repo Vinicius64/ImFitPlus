@@ -53,20 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nome_tv" />
 
-    <Button
-        android:id="@+id/voltar_bt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/voltar"
-        android:textSize="20sp"
-        app:cornerRadius="12dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/green"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/peso_ideal_tv"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="24dp" />
+
     <Button
         android:id="@+id/resumo_bt"
         android:layout_width="0dp"
@@ -78,7 +65,22 @@
         android:backgroundTint="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/voltar_bt"
+        app:layout_constraintTop_toBottomOf="@id/peso_ideal_tv"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/voltar_bt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/voltar"
+        android:textSize="20sp"
+        app:cornerRadius="12dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resumo_bt"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="24dp" />
 
