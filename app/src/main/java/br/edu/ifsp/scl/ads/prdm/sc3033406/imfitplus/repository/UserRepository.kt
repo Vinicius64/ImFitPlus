@@ -108,7 +108,49 @@ class UserRepository(context: Context) {
         return user
     }
 
+    fun getLastHistory(): User? {
+        val db = dbHelper.readableDatabase
+        val cursor = db.query("user_history", null, null, null, null, null, "id DESC", "1")
+        var user: User? = null
+        if (cursor.moveToFirst()) {
+            user = User(
+                id = cursor.getLong(cursor.getColumnIndexOrThrow("id")),
+                nome = cursor.getString(cursor.getColumnIndexOrThrow("nome")),
+                sobrenome = cursor.getString(cursor.getColumnIndexOrThrow("sobrenome")),
+                altura = cursor.getIntOrNull(cursor.getColumnIndexOrThrow("altura")),
+                peso = cursor.getIntOrNull(cursor.getColumnIndexOrThrow("peso")),
+                idade = cursor.getIntOrNull(cursor.getColumnIndexOrThrow("idade")),
+                dataNasc = cursor.getString(cursor.getColumnIndexOrThrow("dataNasc")),
+                sexo = cursor.getString(cursor.getColumnIndexOrThrow("sexo")),
+                nivelAtividade = cursor.getString(cursor.getColumnIndexOrThrow("nivelAtividade")),
+                imc = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("imc")),
+                categoriaImc = cursor.getString(cursor.getColumnIndexOrThrow("categoriaImc")),
+                pesoIdeal = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("pesoIdeal")),
+                gastoCalorico = cursor.getDoubleOrNull(cursor.getColumnIndexOrThrow("gastoCalorico"))
+            )
+        }
+        cursor.close()
+        db.close()
+        return user
+    }
+
     fun addHistory(user: User): Long {
+
+        val last = getLastHistory()
+
+        if (last != null) {
+            if (last.nome == user.nome &&
+                last.sobrenome == user.sobrenome &&
+                last.altura == user.altura &&
+                last.peso == user.peso &&
+                last.idade == user.idade &&
+                last.dataNasc == user.dataNasc &&
+                last.sexo == user.sexo &&
+                last.nivelAtividade == user.nivelAtividade) {
+                return -1
+            }
+        }
+
         val db = dbHelper.writableDatabase
         val cv = ContentValues().apply {
             put("nome", user.nome)
